@@ -55,7 +55,7 @@ void init_schema(void)
     char * buffer;
     size_t result;
   
-    pFile = fopen ( "myfile.bin" , "rb" ); //TODO Specify the file name from user
+    pFile = fopen ( "data.avsc" , "rb" ); //TODO Specify the file name from user
     if (pFile==NULL) {fputs ("File error",stderr); exit (1);}
   
     // obtain file size:
@@ -73,17 +73,16 @@ void init_schema(void)
   
     /* the whole file is now loaded in the memory buffer. */
   
+    printf("Schema: %s\n", buffer);
+
+    if (avro_schema_from_json_literal(buffer, &person_schema)) {
+	fprintf(stderr, "Unable to parse the schema\n");
+	exit(EXIT_FAILURE);
+    }
+    
     // terminate
     fclose (pFile);
-    free (buffer);
-
-
-
-
-	if (avro_schema_from_json_literal(DATA_SCHEMA, &person_schema)) {
-		fprintf(stderr, "Unable to parse person schema\n");
-		exit(EXIT_FAILURE);
-	}
+   // free (buffer);
 }
 
 
