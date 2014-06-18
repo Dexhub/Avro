@@ -111,55 +111,43 @@ void write_avro(const char* avro_output)
 
     for ( j = 1; j < num_records ; j++ ) // J=0 is the field title record
     {
-        for ( i = 0; i < num_fields ; i++ )
+        for ( i = 0; i < num_fields ; i++ ) // For each field perform
         {
             avro_value_get_by_index(&value, i, &field, NULL);
             val_type = avro_value_get_type(&field);
             printf("Field Type:%d",val_type);
 
             //TODO use function pointers
-            switch(val_type):
-            case 0: 
-                // AVRO_STRING
-                avro_value_set_string(&field, /*Data Value*/);
-                break;
-            case 2: 
-                // AVRO_INT32
-                avro_value_set_int(&field, /*atoi(DataValue)*/);
-                break;
-            case 3:
-                // AVRO_INT64
-                avro_value_set_long(&field, /*atol(DataValue)*/);
-                break;
-            case 4:
-                // AVRO_FLOAT
-                avro_value_set_float(&field, /*atof(DataValue)*/);
-                break;
-            default:
-                // We don't handle this format yet
-                stderr("Unknown Format!");
-                break;
+            switch(val_type)
+            {
+                case 0: 
+                    // AVRO_STRING
+                    avro_value_set_string(&field, /*Data Value*/);
+                    break;
+                case 2: 
+                    // AVRO_INT32
+                    avro_value_set_int(&field, /*atoi(DataValue)*/);
+                    break;
+                case 3:
+                    // AVRO_INT64
+                    avro_value_set_long(&field, /*atol(DataValue)*/);
+                    break;
+                case 4:
+                    // AVRO_FLOAT
+                    avro_value_set_float(&field, /*atof(DataValue)*/);
+                    break;
+                default:
+                    // We don't handle this format yet
+                    stderr("Unknown Format!");
+                    break;
+            }// End Switch statement
+        } // End for i: Num_fields
+
+       // Write the value to avro file 
+        avro_file_writer_append_value(writer, &value); 
+    } // End for j : Num_records
 
 
-
-
-            avro_value_set_long(&field, 12);
-
-    avro_value_get_by_index(&value, 1, &field, NULL);
-    avro_value_set_string(&field, "Himanshu");
-
-    
-        }
-
-    avro_value_get_by_index(&value, 2, &field, NULL);
-    avro_value_set_string(&field, "Shah");
-
-    avro_value_get_by_index(&value, 3, &field, NULL);
-    avro_value_set_string(&field, "6094352324");
-
-    avro_value_get_by_index(&value, 4, &field, NULL);
-    avro_value_set_int(&field, 23);
-    avro_file_writer_append_value(writer, &value); 
 //    avro_value_write(writer, &values[0]);
 
 //    avro_file_writer_flush(writer);
@@ -205,6 +193,7 @@ void write_avro(const char* avro_output)
     }
 
 /* We don't need the interface and schema anymore */ 
+    avro_value_decref(&value);
     avro_value_iface_decref(iface);
     avro_schema_decref(person_schema);
     printf("All is well in Writting Avro!\n");
