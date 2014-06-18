@@ -70,9 +70,8 @@ void write_avro(const char* avro_output)
     
     
     avro_file_writer_t writer = NULL;
-    avro_value_t value;
-    avro_value_t field;
-    
+    avro_value_t value, field;
+    avro_type_t val_type;
     
     char *CSVData[num_records][num_fields];
     
@@ -110,20 +109,48 @@ void write_avro(const char* avro_output)
     avro_generic_value_new(iface, &value);
 
 
+    for ( j = 1; j < num_records ; j++ ) // J=0 is the field title record
+    {
+        for ( i = 0; i < num_fields ; i++ )
+        {
+            avro_value_get_by_index(&value, i, &field, NULL);
+            val_type = avro_value_get_type(&field);
+            printf("Field Type:%d",val_type);
+
+            //TODO use function pointers
+            switch(val_type):
+            case 0: 
+                // AVRO_STRING
+                avro_value_set_string(&field, /*Data Value*/);
+                break;
+            case 2: 
+                // AVRO_INT32
+                avro_value_set_int(&field, /*atoi(DataValue)*/);
+                break;
+            case 3:
+                // AVRO_INT64
+                avro_value_set_long(&field, /*atol(DataValue)*/);
+                break;
+            case 4:
+                // AVRO_FLOAT
+                avro_value_set_float(&field, /*atof(DataValue)*/);
+                break;
+            default:
+                // We don't handle this format yet
+                stderr("Unknown Format!");
+                break;
 
 
 
-    avro_value_get_by_index(&value, 0, &field, NULL);
-    avro_type_t val_type;
 
-    avro_value_set_long(&field, 12);
+            avro_value_set_long(&field, 12);
 
     avro_value_get_by_index(&value, 1, &field, NULL);
     avro_value_set_string(&field, "Himanshu");
 
-    val_type = avro_value_get_type(&field);
-    printf("Field Type:%d",val_type);
     
+        }
+
     avro_value_get_by_index(&value, 2, &field, NULL);
     avro_value_set_string(&field, "Shah");
 
