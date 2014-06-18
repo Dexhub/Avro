@@ -1,0 +1,168 @@
+
+Files cross referenced on 2002 Jun 22 21:08 were:
+  nmalloc.lst
+a sysquery.h
+b nmalloc.h
+c nmalloc.c
+
+IDENTIFIER        OCCURRENCES
+==========        ===========
+0                  42c    74c    78c    82c   135c   176c   242c   277c   467c   540c
+0xDEADBEEF        303c   570c
+0xff              182c
+1                  18c    19c    20c    28c   155c   165c   277c   544c
+1024               67c   168c
+11                428c   485c
+12                501c
+16                289c
+2                 530c
+4                 706c
+7                 750c
+8                 154c
+9                 347c   371c
+924                80c
+ALIGN             154c   155c   158c   530c   539c   561c
+aligndelta        524c   537c   539c   540c   561c   562c   564c
+alignerr          523c   560c   561c   562c
+ALIGNMASK()       155c
+ALIGNMASK         267c   537c   560c
+args               79c    81c    85c    86c    89c    93c    94c    97c   101c   102c   105c   111c   113c   115c   117c
+b                 275c   277c   278c   313c   317c   327c   328c   333c   334c   389c   393c   394c   402c   403c   404c   410c   411c   421c   424c   425c   426c   433c   435c   436c   443c   444c   453c   455c   456c   458c   460c   461c   464c   465c   467c   470c   626c   636c   638c   639c   739c   804c   807c
+badcallabort()    283c   347c   371c   428c   485c   501c   706c   750c
+byte               30c   151c   152c   522c   534c   546c   550c   559c   561c
+CHAR_BIT          168c
+combinehi()       363c   392c   397c   687c   768c   780c   832c
+combinelo()       340c   688c
+data               13a
+DATAOFFSET()      145c
+DATAOFFSET        147c   151c   152c   158c   180c   267c   484c   488c   530c   648c   673c   726c   795c   817c   853c
+dbgbp              68c    69c    72c    80c    81c    86c    94c   102c   667c   847c
+dbgbuff            67c    68c    69c    71c    72c    80c
+DBGEOLN            75c   111c   257c   286c   674c   711c   854c
+DBGFLUSH           69c    77c    80c   110c
+DBGPRT()           76c    79c   111c   216c   220c   222c   224c   226c   228c   231c   244c   246c   249c   394c   412c   456c   465c   468c
+DBGPRTF()          93c    97c   115c   333c   691c   703c
+DBGPRTM()          85c    89c   113c   425c   427c   443c   526c   547c   556c   562c   632c   655c   667c   672c   673c
+DBGPRTR()         101c   105c   117c   746c   757c   767c   779c   787c   806c   824c   830c   839c   847c   852c   853c
+DEBUGF             19c    63c    93c   206c   285c   290c   711c
+DEBUGM             18c    63c    85c   206c   285c   290c   672c
+DEBUGR             20c    64c   101c   208c   286c   291c   852c
+define              4a     3b    18c    19c    20c    22c    23c    24c    25c    28c    66c    69c    75c    79c    83c    85c    87c    89c    90c    93c    95c    97c    98c   101c   103c   105c   106c   109c   110c   111c   112c   113c   114c   115c   116c   117c   118c   145c   147c   151c   152c   154c   155c   158c   165c   176c   299c   301c   303c
+dofree()          681c   709c   728c   819c
+dumpfree()         10b   237c   292c
+endif               9a    28a    29a    13b    28c    58c    92c   100c   108c   121c   138c   150c   186c   261c   288c   294c   306c   443c   498c   572c   676c   713c   856c
+enum               42c   168c
+EOL                66c    76c   244c   252c   318c   333c   368c   369c   379c   394c   396c   399c   412c   425c   443c   456c   506c   547c   556c   633c   655c   672c   691c   747c   753c   757c   767c   779c   787c   806c   824c   830c   839c   852c
+exit()            348c   372c   429c   486c   502c
+EXIT_FAILURE      348c   372c   429c   486c   502c
+expected          522c   534c   535c   537c   546c   549c   550c   558c   559c
+extendsbrk()      519c   652c   828c
+extractfree()     311c   351c   375c   789c
+fakesbrk           25c
+fakesbrk()        543c
+FOULED()          301c   303c   705c   749c
+free               24c
+freehdrs          165c   175c   176c   243c   250c   327c   328c   334c   402c   403c   404c   410c   411c   426c   433c   435c   436c   444c   458c   461c   639c   807c
+gdlo               13a
+guardlo           136c   184c   303c   570c
+h                   5b    33c    34c    35c    36c    37c    38c    64c
+i                 239c   242c   243c   244c   250c
+id                 83c    87c    90c    95c    98c   103c   106c   112c   114c   116c   118c   213c   217c   231c
+ifdef               5a    24a
+ifndef              3a     2b    17c    54c
+include             5b    33c    34c    35c    36c    37c    38c    39c    55c    64c    65c
+inline            263c   273c   340c   419c
+ISFREE()          299c   345c   392c   687c   688c   704c   748c   764c   784c
+lastsbrk          176c   301c   303c   375c   395c   396c   397c   398c   399c   533c   534c   550c   551c   552c   559c   572c   573c   633c   647c   648c   649c   658c   690c   722c   753c   776c   777c   782c   822c   823c   829c   834c
+lgh               283c   288c
+limits             38c
+m                  83c    87c    90c    95c    98c   103c   106c   112c   114c   116c   118c   152c   213c   215c   217c   218c   219c   222c   223c   226c   240c   243c   246c   247c   248c   250c   251c   252c   253c   283c   291c   299c   301c   303c   311c   316c   317c   318c   321c   322c   324c   326c   327c   331c   340c   344c   345c   346c   347c   350c   352c   354c   363c   367c   368c   369c   370c   371c   374c   376c   377c   378c   379c   381c   387c   391c   392c   393c   394c   395c   397c   403c   404c   407c   409c   410c   411c   419c   423c   424c   425c   426c   428c   432c   435c   439c   441c   480c   482c   483c   484c   485c   488c   489c   490c   491c   492c   493c   496c   500c   506c   507c   521c   543c   544c   546c   552c   558c   560c   561c   564c   565c   567c   569c   570c   573c   576c   624c   641c   643c   649c   654c   658c   665c   673c   681c   684c   687c   688c   690c   692c   699c   702c   703c   704c   705c   706c   709c   718c   726c   728c   736c   743c   747c   748c   749c   750c   756c   758c   759c   764c   765c   768c   770c   771c   776c   777c   780c   781c   784c   785c   788c   790c   791c   795c   797c   799c   800c   817c   819c   820c   825c   829c   832c   833c   840c   843c   845c   853c
+m1                342c   344c   350c   351c   352c   353c   354c   356c   365c   374c   375c   378c   480c   483c   488c   489c   490c   491c   498c   499c   500c   501c   504c   624c   639c   640c   641c   643c   644c   652c   653c   654c   720c   722c   726c   729c   736c   743c   759c   760c   768c   771c   772c   780c   781c   782c   788c   789c   790c   791c   795c   797c   800c   801c   807c   808c   809c   812c   813c   828c   832c   833c   834c
+m2                736c   809c   812c   817c   820c
+malloc             23c
+MEMBLKp()         151c   702c   743c
+memblock          127c   128c   129c   133c   134c   142c   145c   147c   184c   186c   187c   188c   189c   190c   191c
+memblockp         142c   151c   165c   175c   213c   240c   283c   311c   314c   340c   342c   363c   365c   387c   419c   478c   480c   483c   519c   521c   624c   681c   699c   718c   720c   736c
+memcpy()          488c   726c   817c
+memmove()         795c
+MINSAVE()         158c
+MINSAVE           640c   653c   758c   770c   777c   799c   808c   823c
+MINSBRK           168c   531c
+mnxtf             314c   321c   326c   327c
+mp                478c   482c   498c
+mprvf             314c   322c   324c
+msg                79c    81c    85c    86c    89c    93c    94c    97c   101c   102c   105c   111c   113c   115c   117c   283c   288c
+mv2freelist()     387c   572c   644c   692c   760c   772c   801c   813c
+mv2lastsbrk()     718c   825c   840c
+__cplusplus         6a    25a
+_sysmalloc()       22a   199c
+_sysquery          12a    22a   179c   199c
+NDEBUG             18c    55c
+next              129c   189c   217c   346c   352c   353c   367c   369c   370c   374c   376c   377c   392c   395c   491c   499c   500c   504c   565c   687c   764c   765c   776c   791c   829c
+nextfree          133c   188c   218c   219c   222c   247c   253c   299c   301c   321c   324c   326c   327c   331c   398c   403c   407c   432c   435c   439c   441c   493c   567c   569c   684c
+NFLISTS           168c   175c   242c   461c   464c
+nfree              23c
+nfree()             8b   697c
+nilp               14a
+nmalloc            22c
+nmalloc()           7b   622c   741c
+nmalloc_h           3b     5b
+NONE              193c   219c   223c   248c   251c   299c   321c   322c   407c   409c   432c   436c   684c
+NONE()            165c
+nrealloc           24c
+nrealloc()          9b   734c
+NULL              321c   322c   328c   331c   352c   376c   398c   433c   439c   441c   493c   496c   535c   544c   565c   567c   569c   624c   668c   751c   843c   848c
+nxt                13a
+nxtf               13a
+offsetof()        145c   184c   186c   187c   188c   189c   190c
+ohead              13a
+p                 151c   627c   665c   668c   672c   676c   737c   845c   848c   852c   856c
+prev              128c   190c   217c   345c   346c   350c   353c   370c   377c   489c   500c   504c   565c   688c   690c   784c   785c   788c   791c
+prevfree          134c   145c   187c   223c   226c   299c   322c   324c   326c   331c   398c   404c   409c   410c   436c   441c   496c   569c   684c
+prv                13a
+prvf               13a
+ptr                 8b     9b   697c   701c   702c   703c   734c   741c   743c   746c
+PTR()             152c   665c   726c   795c   817c   845c
+raise()           294c
+realloc            25c
+rmvfromfree()     419c   639c   807c
+roundup()         263c   631c   745c
+SAVEMEMORY         28c   135c   145c   182c   301c   439c   495c   567c
+sbrk               26c
+searchfree()      451c   636c   804c
+SHOWBLK()          83c   112c   252c   291c   368c   369c   379c   394c
+SHOWBLKF()         95c    98c   116c   318c   334c   396c   399c   703c
+SHOWBLKM()         87c    90c   114c   425c   444c   506c   633c
+SHOWBLKR()        103c   106c   118c   747c   753c
+showblock()        83c    87c    95c   103c   213c
+SIGABRT           294c
+signal             36c
+size              265c   267c   268c
+size2bucket()     273c   317c   393c   424c   455c
+size_t              7b     9b   168c   263c   622c   734c
+split()           478c   643c   649c   658c   722c   759c   771c   781c   800c   812c   833c
+sprintf()          81c    86c    94c   102c
+STDAUX             42c
+stddef              5b    33c
+STDERR             42c   288c   289c
+STDIN              42c
+stdio              64c
+stdlib             34c
+STDOUT             42c    71c
+STDPRN             42c
+string             37c
+strlen()           71c
+sysquery          179c   201c
+sysquery_h          4a     5a
+sz                 13a     7b     9b   132c   186c   217c   246c   263c   267c   273c   277c   317c   354c   378c   393c   424c   458c   478c   483c   484c   490c   492c   534c   551c   564c   622c   630c   631c   632c   640c   648c   653c   673c   726c   734c   741c   744c   745c   746c   756c   758c   765c   770c   777c   785c   790c   795c   799c   808c   817c   823c   853c
+szneed            451c   455c   458c   625c   631c   632c   636c   640c   643c   648c   649c   652c   653c   658c   718c   722c   738c   745c   746c   756c   758c   759c   765c   770c   771c   777c   781c   785c   799c   800c   804c   808c   812c   823c   825c   828c   833c   840c
+szxtra            519c   530c   531c   539c   543c   549c   551c   558c   564c
+ulong              31c   132c   136c   263c   265c   273c   451c   478c   519c   537c   560c   625c   718c   738c
+ulong              31c   132c   136c   263c   265c   273c   451c   478c   519c   537c   560c   625c   718c   738
+ulong              31c   132c   136c   263c   265c   273c   451c   478c   519c   537c   560c   625c   718c   73
+ulong              31c   132c   136c   263c   265c   273c   451c   478c   519c   537c   560c   625c   718c   7
+unistd             35c
+write()            71c   288c   289c
+
+   153 Identifiers  1397 Occurences
+     6 Collisions     35 Misses
