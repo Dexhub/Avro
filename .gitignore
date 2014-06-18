@@ -1,2 +1,4 @@
 quickstop
 quickstop.db
+*.swp
+*.swo

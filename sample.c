@@ -65,7 +65,7 @@ void write_avro(const char* avro_output)
     char *field_data;
     char *saveptr;
     
-    int num_records = 3;
+    int num_records = 4;
     int num_fields = 5;
     
     
@@ -96,6 +96,12 @@ void write_avro(const char* avro_output)
     CSVData[2][4] = "23";
 
     
+    CSVData[3][0] = "3"; 
+    CSVData[3][1] = "Steve";
+    CSVData[3][2] = "Shaw";
+    CSVData[3][3] = "609654398";
+    CSVData[3][4] = "21";
+    
     rval = avro_file_writer_create_with_codec(avro_output, person_schema, &writer, AVRO_CODEC, 0); 
   
     if (rval)
@@ -122,23 +128,23 @@ void write_avro(const char* avro_output)
             {
                 case 0: 
                     // AVRO_STRING
-                    avro_value_set_string(&field, /*Data Value*/);
+                    avro_value_set_string(&field, CSVData[j][i]/*Data Value*/);
                     break;
                 case 2: 
                     // AVRO_INT32
-                    avro_value_set_int(&field, /*atoi(DataValue)*/);
+                    avro_value_set_int(&field, atoi(CSVData[j][i]) /*atoi(DataValue)*/);
                     break;
                 case 3:
                     // AVRO_INT64
-                    avro_value_set_long(&field, /*atol(DataValue)*/);
+                    avro_value_set_long(&field, atol(CSVData[j][i])/*atol(DataValue)*/);
                     break;
                 case 4:
                     // AVRO_FLOAT
-                    avro_value_set_float(&field, /*atof(DataValue)*/);
+                    avro_value_set_float(&field, atof(CSVData[j][i])/*atof(DataValue)*/);
                     break;
                 default:
                     // We don't handle this format yet
-                    stderr("Unknown Format!");
+                    printf("Unknown Format!");
                     break;
             }// End Switch statement
         } // End for i: Num_fields
