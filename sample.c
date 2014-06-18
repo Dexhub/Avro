@@ -31,6 +31,8 @@
      14         AVRO_LINK
      15 };
 */
+
+
 avro_schema_t person_schema;
 int64_t id = 0;
 
@@ -53,13 +55,27 @@ void init_schema(void)
 	}
 }
 
-    //TODO avro_file_writer_create_with_codec_fp
-    //TODO avro_datum_t record_data = avro_record(person_schema);
-    //TODO int num_fields= get_num_fields_schema();
-    //run a for loop to get the number of fields
 
 void write_avro(const char* avro_output)
 {
+
+    /************************************************************************
+     *      STEP I : Create a Generic record                                *
+     *                                                                      *
+     *      STEP II : Read the data from a file                             *
+     *              - Based on the schema get data type for each field      *
+     *              - Accordingly populate the fields in generic record.    *
+     *                                                                      *
+     *      STEP III : Save the records and write it out to a file.         *
+     *                                                                      *
+     ************************************************************************/
+    
+        //TODO avro_file_writer_create_with_codec_fp
+        //TODO avro_datum_t record_data = avro_record(person_schema);
+        //TODO int num_fields= get_num_fields_schema();
+        //TODO run a for loop to get the number of fields
+
+
     int i, j, k;
     int rval;
     char *field_data;
@@ -108,10 +124,8 @@ void write_avro(const char* avro_output)
     {
         printf("There was an error creating %s\n",avro_output);
     }
-    /* STEP II - Create a Generic record */
 
     avro_value_iface_t *iface = avro_generic_class_from_schema(person_schema);
-
     avro_generic_value_new(iface, &value);
 
 
@@ -121,7 +135,7 @@ void write_avro(const char* avro_output)
         {
             avro_value_get_by_index(&value, i, &field, NULL);
             val_type = avro_value_get_type(&field);
-            printf("Field Type:%d",val_type);
+            printf("Field Type:%d\n",val_type);
 
             //TODO use function pointers
             switch(val_type)
@@ -154,55 +168,13 @@ void write_avro(const char* avro_output)
     } // End for j : Num_records
 
 
-//    avro_value_write(writer, &values[0]);
-
-//    avro_file_writer_flush(writer);
-
-//    for ( j = 1; j < num_records ; j++ ) // J=0 is the field title record
-//    {
-//        i = 0;
-//
-//        field_data = CSVData[j][0]; // get first token;
-//        printf("Field Data: %ld\n", atol(field_data));
-//        avro_value_set_long(&values[0], atol(field_data)); // Setting Person ID
-//                                                     //TODO First value is long
-//
-//        while( i != 4 ) // set all the other tokens 
-//        {
-//            field_data = CSVData[j][i];
-//            printf("Field Data: %s\n", field_data);
-//            avro_value_set_string(&values[i++], field_data); // Setting String values
-//
-//        }
-//        
-//        field_data = CSVData[j][4];
-//        printf("Field Data: %d\n", atoi(field_data));
-//        avro_value_set_int(&values[4], atoi(field_data)); // Setting Person Age
-//       
-//        for ( k = 0; k < num_fields ; k++)
-//        {       
-//           // avro_file_writer_append_value(writer, &values[k]);
-//            avro_value_write(writer, &values[k])
-//            avro_value_reset( &values[k] );
-//        }
-//avro_value_get_by_index(p_val, 0, &field, NULL); 
-//
-//
-//    }
-//
+    //Cleanup Code
     avro_file_writer_close(writer);
-//
-    // Cleanup
-    for ( i = 0; i < num_fields ; i++)
-    {
-//TODO Ask Ujjwal       avro_value_decref(&values[num_fields]);
-    }
-
-/* We don't need the interface and schema anymore */ 
     avro_value_decref(&value);
     avro_value_iface_decref(iface);
     avro_schema_decref(person_schema);
-    printf("All is well in Writting Avro!\n");
+
+    printf("So far Good!\n");
     return;
 }
 
@@ -259,18 +231,6 @@ void read_avro(const char* avro_input)
 int main(void)
 {
 
-/* 
- *      STEP I : Initialize the writer schema
- *              -Read the schema file
- *              -Initialize the avro schema writer object
- *
- *      STEP II : Create a Generic record
- *
- *      STEP III : Read the data from a file
- *              - Based on the schema get data type for each field and populate the fields in generic record.
- *      STEP IV : Save the records and wrte it out to a file, or print it for now.
- *
- **/
     int rval;    
     const char *avro_file="Avrooutput.avro";
     /* Step I : Initialize the schema structure from JSON */
