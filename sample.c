@@ -49,6 +49,37 @@ const char  DATA_SCHEMA[] =
 /* Parse schema into a schema data structure */
 void init_schema(void)
 {
+    //Read the Schema file into buffer
+    FILE * pFile;
+    long lSize;
+    char * buffer;
+    size_t result;
+  
+    pFile = fopen ( "myfile.bin" , "rb" ); //TODO Specify the file name from user
+    if (pFile==NULL) {fputs ("File error",stderr); exit (1);}
+  
+    // obtain file size:
+    fseek (pFile , 0 , SEEK_END);
+    lSize = ftell (pFile);
+    rewind (pFile);
+  
+    // allocate memory to contain the whole file:
+    buffer = (char*) malloc (sizeof(char)*lSize);
+    if (buffer == NULL) {fputs ("Memory error",stderr); exit (2);}
+  
+    // copy the file into the buffer:
+    result = fread (buffer,1,lSize,pFile);
+    if (result != lSize) {fputs ("Reading error",stderr); exit (3);}
+  
+    /* the whole file is now loaded in the memory buffer. */
+  
+    // terminate
+    fclose (pFile);
+    free (buffer);
+
+
+
+
 	if (avro_schema_from_json_literal(DATA_SCHEMA, &person_schema)) {
 		fprintf(stderr, "Unable to parse person schema\n");
 		exit(EXIT_FAILURE);
