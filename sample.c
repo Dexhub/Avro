@@ -128,7 +128,6 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     int num_records = 4;
     int num_fields = 5;
     
-    
     avro_file_writer_t writer = NULL;
     avro_value_t value, field;
     avro_type_t val_type;
@@ -220,8 +219,6 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     printf("So far Good!\n");
     return;
 }
-
-
 
 void read_avro(const char* avro_input)
 {
