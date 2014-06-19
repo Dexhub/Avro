@@ -4,6 +4,7 @@
 avro_schema_t avro_schema;
 avro_file_writer_t writer = NULL;
 avro_value_t value, field;
+avro_value_iface_t *iface;
 
 int32_t field_counter = 0;
 
@@ -68,7 +69,7 @@ int setup_record_structure(const char  *schema_file) //TODO Error Checking
     init_schema(schema_file);
     avro_file_writer_create_with_codec_fp(fp, "", 0, avro_schema, &writer, AVRO_CODEC, 0); 
   
-    avro_value_iface_t *iface = avro_generic_class_from_schema(avro_schema);
+    iface = avro_generic_class_from_schema(avro_schema);
     avro_generic_value_new(iface, &value);
     return 0;
 }
@@ -76,7 +77,16 @@ int setup_record_structure(const char  *schema_file) //TODO Error Checking
 int reset_record_structure(void)
 {
     avro_file_writer_append_value(writer, &value); 
-    field_counter = 1 ;
+    field_counter = 0 ;
+}
+
+
+int cleanup_record_structure(void)
+{
+    avro_file_writer_close(writer);
+    avro_value_decref(&value);
+    avro_value_iface_decref(iface);
+    avro_schema_decref(avro_schema);
 }
 
 int set_null_value(const char* data_value) // TODO UJJWAL

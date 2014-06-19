@@ -33,4 +33,5 @@ int set_double_value(double data_value);
 int set_byte_value(float data_value); //TODO Ujjwal - datavalue
 int set_string_value(const char* data_value);
 int reset_record_structure(void);
+int cleanup_record_structure(void);
 //----

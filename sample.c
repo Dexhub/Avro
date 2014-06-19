@@ -40,7 +40,7 @@
 
 
 avro_schema_t avro_schema;
-int32_t field_counter = 1;
+int32_t field_counter = 0;
 avro_file_writer_t writer = NULL;
 avro_value_t value, field;
 
@@ -424,7 +424,7 @@ int setup_record_structure(const char  *schema_file) //TODO Error Checking
 int reset_record_structure(void)
 {
     avro_file_writer_append_value(writer, &value); 
-    field_counter = 1 ;
+    field_counter = 0 ;
 }
 
 int set_null_value(const char* data_value) // TODO UJJWAL

@@ -11,8 +11,8 @@ int main(){
     set_string_value("Adams");
     set_string_value("6589896564");
     set_int_value(32);
-
     reset_record_structure();
+    cleanup_record_structure();
     return(0);
 
 }
