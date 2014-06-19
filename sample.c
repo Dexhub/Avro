@@ -53,9 +53,11 @@ void setup_record_structure(const char  *schema_file)
   
     avro_value_iface_t *iface = avro_generic_class_from_schema(avro_schema);
     avro_generic_value_new(iface, &value);
+}
 
-
-
+int set_string_value(const char* data_value){
+    avro_value_get_by_index(&value, field_counter, &field, NULL);
+    avro_set_string(&field, data_value);
 }
 
 
