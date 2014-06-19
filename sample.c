@@ -215,7 +215,7 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     avro_value_iface_decref(iface);
     avro_schema_decref(avro_schema);
 
-    printf("So far Good!\n");
+//printf("So far Good!\n");
     return;
 }
 
