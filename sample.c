@@ -34,18 +34,10 @@
 */
 
 
-avro_schema_t person_schema;
-int64_t id = 0;
+avro_schema_t avro_schema;
+avro_file_writer_t writer = NULL;
+avro_value_t value, field;
 
-const char  DATA_SCHEMA[] =
-"{\"type\":\"record\",\
-  \"name\":\"Person\",\
-  \"fields\":[\
-  {\"name\": \"ID\", \"type\": \"long\"},\
-  {\"name\": \"First\", \"type\": \"string\"},\
-  {\"name\": \"Last\", \"type\": \"string\"},\
-  {\"name\": \"Phone\", \"type\": \"string\"},\
-  {\"name\": \"Age\", \"type\": \"int\"}]}";
 
 /* Parse schema into a schema data structure */
 void init_schema(const char *schema_file)
@@ -88,7 +80,7 @@ void init_schema(const char *schema_file)
   
     //printf("Schema: %s\n", buffer);
 
-    if(avro_schema_from_json_length(buffer, result, &person_schema))
+    if(avro_schema_from_json_length(buffer, result, &avro_schema))
     {
         fprintf(stderr, "Unable to parse the schema\n");
 	exit(EXIT_FAILURE);
@@ -115,7 +107,7 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
      ************************************************************************/
     
      //TODO avro_file_writer_create_with_codec_fp
-     //TODO avro_datum_t record_data = avro_record(person_schema);
+     //TODO avro_datum_t record_data = avro_record(avro_schema);
      //TODO int num_fields= get_num_fields_schema();
      //TODO run a for loop to get the number of fields
 
@@ -128,8 +120,6 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     int num_records = 4;
     int num_fields = 5;
     
-    avro_file_writer_t writer = NULL;
-    avro_value_t value, field;
     avro_type_t val_type;
     
     char *CSVData[num_records][num_fields];
@@ -160,15 +150,24 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     CSVData[3][2] = "Shaw";
     CSVData[3][3] = "609654398";
     CSVData[3][4] = "21";
-    
-    rval = avro_file_writer_create_with_codec(avro_output, person_schema, &writer, AVRO_CODEC, 0); 
+
+    if (avro_output == "stdout")
+    {
+        FILE *fp = stdout;
+        rval = avro_file_writer_create_with_codec_fp (fp,"", 0, avro_schema, &writer, AVRO_CODEC, 0); 
+        printf("Entered!\n");
+    }
+    else
+    {
+        rval = avro_file_writer_create_with_codec(avro_output, avro_schema, &writer, AVRO_CODEC, 0); 
+    }
   
     if (rval)
     {
         printf("There was an error creating %s\n",avro_output);
     }
 
-    avro_value_iface_t *iface = avro_generic_class_from_schema(person_schema);
+    avro_value_iface_t *iface = avro_generic_class_from_schema(avro_schema);
     avro_generic_value_new(iface, &value);
 
 
@@ -214,7 +213,7 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     avro_file_writer_close(writer);
     avro_value_decref(&value);
     avro_value_iface_decref(iface);
-    avro_schema_decref(person_schema);
+    avro_schema_decref(avro_schema);
 
     printf("So far Good!\n");
     return;
@@ -273,7 +272,7 @@ int main(int argc, char *argv[])
 
     char *schema_file, *data_file, *output_file;
     data_file = "stdin";
-    output_file = "Avro_file.avro";
+    output_file = "stdout";
     if(argc < 2) /* argc should at least be 2 for correct execution */
     {
         /* We print argv[0] assuming it is the program name */

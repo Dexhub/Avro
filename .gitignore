@@ -2,3 +2,4 @@ quickstop
 quickstop.db
 *.swp
 *.swo
+.*.un* 
