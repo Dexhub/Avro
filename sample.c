@@ -8,6 +8,8 @@
 #include <time.h>
 #include "schema.h"
 
+#include "avro-lib.h"
+
 #ifdef DEFLATE_CODEC
 #define AVRO_CODEC  "deflate"
 #else
@@ -43,24 +45,6 @@ avro_schema_t avro_schema;
 int32_t field_counter = 0;
 avro_file_writer_t writer = NULL;
 avro_value_t value, field;
-
-
-
-void init_schema(const char *schema_file);
-
-    
-// External Functions for use --    
-int setup_record_structure(const char  *schema_file);
-int set_null_value(const char* data_value); // TODO Ujjwal - datavalue
-int set_boolean(bool data_value);
-int set_int_value(uint32_t data_value);
-int set_long_value(uint64_t data_value);
-int set_float_value(float data_value);
-int set_double_value(double data_value);
-int set_byte_value(float data_value); //TODO Ujjwal - datavalue
-int set_string_value(const char* data_value);
-int reset_record_structure(void);
-//----
 
 
 /* Parse schema into a schema data structure */
@@ -391,164 +375,6 @@ int main(int argc, char *argv[])
 //    read_avro(avro_file);
 
     return 0;
-    }
+} 
 
 
-
-// ---------------- Code for External Functions ----------------
-//int set_null_value(const char* data_value); // TODO Ujjwal - datavalue
-//int set_boolean(bool data_value);
-//int set_int_value(uint32_t data_value);
-//int set_long_value(uint64_t data_value);
-//int set_float_value(float data_value);
-//int set_double_value(double data_value);
-//int set_byte_value(const char* data_value); //TODO Ujjwal - datavalue
-//int set_string_value(const char* data_value);
-//int reset_record_structure(const char  *schema_file);
-//--------------------------------------------------------------
-
-
-
-int setup_record_structure(const char  *schema_file) //TODO Error Checking
-{
-    FILE *fp = stdout; 
-    
-    init_schema(schema_file);
-    avro_file_writer_create_with_codec_fp(fp, "", 0, avro_schema, &writer, AVRO_CODEC, 0); 
-  
-    avro_value_iface_t *iface = avro_generic_class_from_schema(avro_schema);
-    avro_generic_value_new(iface, &value);
-    return 0;
-}
-
-int reset_record_structure(void)
-{
-    avro_file_writer_append_value(writer, &value); 
-    field_counter = 0 ;
-}
-
-int set_null_value(const char* data_value) // TODO UJJWAL
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_string(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set string value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-
-int set_boolean_value(bool data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_boolean(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set boolean value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-
-int set_int_value(uint32_t data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_int(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set integer value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-
-int set_long_value(uint64_t data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_long(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set long value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-
-int set_float_value(float data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_float(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set float value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-
-int set_double_value(double data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_double(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set double value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-int set_byte_value(float data_value) //TODO UJJWAL
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_float(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set byte value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
-int set_string_value(const char* data_value)
-{
-    avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_string(&field, data_value);
-    if (rval)
-    {
-        printf("Error: Unable to set string value correctly.");
-        return 1;
-    }
-    else
-    {
-        field_counter++;
-    }
-    return 0;
-}
