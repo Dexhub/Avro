@@ -86,7 +86,7 @@ void init_schema(void)
 }
 
 
-void write_avro(const char* avro_output)
+void write_avro(const char* schema_file, const char* avro_input, const char* avro_output)
 {
 
     /************************************************************************
@@ -258,17 +258,75 @@ void read_avro(const char* avro_input)
 }
 
 
-int main(void)
+int main(int argc, char *argv[])
 {
 
+    char *schema_file, *data_file, *output_file;
+    output_file = "Avro_file.avro";
+    if(argc < 3) /* argc should at least be 2 for correct execution */
+    {
+        /* We print argv[0] assuming it is the program name */
+        printf( "Usage: %s schema_file data_file [options] \n", argv[0] );
+        printf( "\t\toptions: -O  output_filename\n");
+        return 0;
+            
+    }
+    else
+    {
+        int i;
+    
+        for (i = 1; i < argc; i++)  /* Skip argv[0] (program name). */
+        {
+            if (strcmp(argv[i], "-O") == 0)  /* Process optional arguments. */
+            {
+                /*
+                 * The last argument is argv[argc-1].  Make sure there are
+                 * enough arguments.
+                 */
+                if (i < 3)
+                {
+                    /* The mandatory input file name missing*/
+                    printf( "Usage: %s schema_file data_file [options] \n", argv[0] );
+                    printf( "\t\toptions: -O  output_filename\n");
+                    return 0;
+                } 
+                if (i + 1 <= argc - 1)  /* There are enough arguments in argv. */
+                {
+                    /*
+                     * Increment 'i' twice so that you don't check these
+                     * arguments the next time through the loop.
+                     */
+    
+                    i++;
+                    output_file = argv[i];  /* Convert string to int. */
+                }
+                else
+                {
+                    /* Print usage statement and exit (see below). */
+                    printf( "Usage: %s schema_file data_file [options] \n", argv[0] );
+                    printf( "\t\toptions: -O  output_filename\n");
+                    return 0;
+                }
+            }
+            else
+            {
+                /* Process non-optional arguments here. */
+                schema_file = argv[1];
+                data_file = argv[2];
+                 
+            }
+    }
+    }
+
+
     int rval;    
-    const char *avro_file="Avrooutput.avro";
+    //const char *avro_file="Avrooutput.avro";
     /* Step I : Initialize the schema structure from JSON */
     init_schema();
 
-    write_avro(avro_file);
+    write_avro(schema_file, data_file, output_file);
 
-    read_avro(avro_file);
+//    read_avro(avro_file);
 
     return 0;
     }
