@@ -7,6 +7,6 @@ gcc -g example.c avro-lib.c  -I /home/dexter/Syncsort/dmx/file-util/src -L /home
 #./sample data.avsc
 echo "### Testing example code. Output: avro.data\n"
 ./example 2&> avro.data
-echo "### Converting the output to json\n "
-echo "\n\n"
+sleep 2
+echo "\n### Converting the output to json\n "
 java -jar ./avro-tools-1.7.6.jar tojson data

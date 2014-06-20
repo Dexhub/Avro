@@ -19,7 +19,7 @@ void init_schema(const char *schema_file)
     char * buffer;
     size_t result;
   
-    pFile = fopen ( schema_file, "rb" ); //TODO Specify the file name from user
+    pFile = fopen ( schema_file, "rb" ); 
     if (pFile==NULL) 
     {
         fputs ("File error",stderr); 
@@ -89,10 +89,10 @@ int cleanup_record_structure(void)
     avro_schema_decref(avro_schema);
 }
 
-int set_null_value(const char* data_value) // TODO UJJWAL
+int set_null_value() // TODO Test
 {
     avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_string(&field, data_value);
+    int rval = avro_value_set_null(&field);
     if (rval)
     {
         printf("Error: Unable to set string value correctly.");
@@ -184,10 +184,10 @@ int set_double_value(double data_value)
     }
     return 0;
 }
-int set_byte_value(float data_value) //TODO UJJWAL
+int set_byte_value(void *data_value, int size) //TODO Test
 {
     avro_value_get_by_index(&value, field_counter, &field, NULL);
-    int rval = avro_value_set_float(&field, data_value);
+    int rval = avro_value_set_bytes(&field, data_value, size);
     if (rval)
     {
         printf("Error: Unable to set byte value correctly.");
