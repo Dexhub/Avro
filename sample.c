@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <avro.h>
+#include "avro.h"
 #include <avro/generic.h>
 #include "avro_private.h"
 #include <limits.h>
@@ -216,7 +216,7 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     avro_value_iface_decref(iface);
     avro_schema_decref(person_schema);
 
-    printf("So far Good!\n");
+//TODO    printf("So far Good!\n");
     return;
 }
 
