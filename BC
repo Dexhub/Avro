@@ -1,8 +1,0 @@
-                     ^
-sample.c:141:27: error: called object ‘stderr’ is not a function or function pointer
-                     stderr("Unknown Format!");
-                           ^
-In file included from sample.c:1:0:
-/usr/include/stdio.h:170:25: note: declared here
- extern struct _IO_FILE *stderr;  /* Standard error output stream.  */
-                         ^
