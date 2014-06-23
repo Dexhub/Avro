@@ -155,7 +155,7 @@ void write_avro(const char* schema_file, const char* avro_input, const char* avr
     {
         FILE *fp = stdout;
         rval = avro_file_writer_create_with_codec_fp (fp,"", 0, avro_schema, &writer, AVRO_CODEC, 0); 
-        printf("Entered!\n");
+    //printf("Entered!\n");
     }
     else
     {
